@@ -1,8 +1,9 @@
-# WIP
-
 # Salutem ('health' in latin)
 
 A basic healthcheck script for servers.
+
+![](https://i.imgur.com/wNUgVlO.gif)
+
 
 ## Adding checks
 
