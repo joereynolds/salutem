@@ -1,9 +1,11 @@
 # Salutem ('health' in latin)
 
-A basic healthcheck script for servers.
+A basic healthcheck script for server admins on a budget.
 
 ![](https://i.imgur.com/wNUgVlO.gif)
 
+Things like Netdata and Graylog are too RAM hungry for a $5 DigitalOcean box.
+This is where Salutem comes into play!
 
 ## Adding checks
 
