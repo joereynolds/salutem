@@ -1,3 +1,6 @@
+[ ! -d ~/.config/salutem/checks ] && echo 'No custom checks found, you can write your own in ~/.config/salutem/checks'
+
+
 function main
 {
     touch healthcheck.lock
@@ -7,7 +10,7 @@ function main
 
 function check
 {
-    for file in checks/**/*.sh; do
+    for file in checks/**/*.sh ~/.config/salutem/checks/*.sh; do
          source $file
 
          # TODO check the service actuall exists
@@ -21,4 +24,5 @@ function check
          fi
     done
 }
+
 main

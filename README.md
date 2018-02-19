@@ -19,4 +19,6 @@ to return the correct exit code so that Salutem knows what to do.
 
 ### Custom checks
 
-Add in any custom checks you want to the `checks/custom` directory (There are 2 example ones to get you started), in order for the main `healthcheck.sh` file to know whether succeeded or not, you will need to `echo 0` for success or `echo 1` for failure.
+Custom checks should be stored in `~/.config/salutem/checks`.
+There are some examples of custom checks in `checks/custom` to get an idea of what you can do.
+Basically, as long as you `echo 0` for success and `echo 1` for failure, it will 'just work'.
