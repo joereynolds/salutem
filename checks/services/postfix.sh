@@ -1,6 +1,6 @@
 function check
 {
-    result=$(sudo service docker status | grep 'running')
+    result=$(sudo service postfix status | grep 'running')
 
     if [[ $result ]]; then
         echo 0

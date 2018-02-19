@@ -1,14 +1,13 @@
 function main
 {
     touch healthcheck.lock
-    check_services
-    check_custom_checks
+    check
     rm healthcheck.lock
 }
 
-function check_services
+function check
 {
-    for file in checks/services/*.sh; do
+    for file in checks/**/*.sh; do
          source $file
 
          # TODO check the service actuall exists
@@ -22,19 +21,4 @@ function check_services
          fi
     done
 }
-
-function check_custom_checks
-{
-    for file in checks/custom/*.sh; do
-         source $file
-
-         # Calls the check method from each script
-         if [[ "$(check)" -eq 0 ]]; then
-             echo "[$file] ✔"
-         else
-             echo "[$file] ✖"
-         fi
-    done
-}
-
 main
