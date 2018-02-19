@@ -2,7 +2,7 @@
 
 # Salutem ('health' in latin)
 
-A basic healthcheck script for servers
+A basic healthcheck script for servers.
 
 ## Adding checks
 
