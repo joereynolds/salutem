@@ -19,6 +19,6 @@ to return the correct exit code so that Salutem knows what to do.
 
 ### Custom checks
 
-Custom checks should be stored in `~/.config/salutem/checks`.
+Custom checks should be stored in `~/.config/salutem/checks` (Though can also be stored in `checks/custom` if you prefer).
 There are some examples of custom checks in `checks/custom` to get an idea of what you can do.
 Basically, as long as you `echo 0` for success and `echo 1` for failure, it will 'just work'.
