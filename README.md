@@ -2,7 +2,7 @@
 
 A basic healthcheck script for server admins on a budget.
 
-![](https://i.imgur.com/lAkomtC.gif)
+![](https://i.imgur.com/UHA7h7f.gif)
 
 Things like Netdata and Graylog are too RAM hungry for a $5 DigitalOcean box.
 This is where Salutem comes into play!
