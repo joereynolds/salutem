@@ -12,6 +12,7 @@ main() {
     if [ "$1" != '--help' ] &&
        [ "$1" != '--colored' ] &&
        [ "$1" != '--stop-on-failure' ] &&
+       [ "$1" != '--only-show-failures' ] &&
        [ ! -z "$1" ]; then
         echo 'Incorrect option passed, try ./healthcheck.sh --help for more information'
         exit 0
@@ -25,8 +26,10 @@ display_help() {
     Usage: ./healthcheck.sh [OPTION]
     Run checks and output to standard output.
 
-      --help     display this help and exit
-      --colored  display the results with ANSI color codes
+      --help              display this help and exit
+      --colored           display the results with ANSI color codes
+      --only-show-errors  display failed checks only
+      --stop-on-failure   once a failure is encountered, abort
 
     Examples:
       ./healthcheck.sh Perform all checks in your ~/.config directory and checks directory.'
@@ -38,6 +41,10 @@ check() {
 
          # Calls the check method from each script
          if [[ "$(check)" -eq 0 ]]; then
+
+             if [ "$1" == '--only-show-failures' ]; then
+                 continue
+             fi
 
              if [ "$1" == '--colored' ]; then
                  print_coloured_success $file
