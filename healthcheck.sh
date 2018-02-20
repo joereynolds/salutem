@@ -1,11 +1,12 @@
+set -o errexit
+set -o nounset
+
 [ ! -d ~/.config/salutem/checks ] && echo 'No custom checks found, you can write your own in ~/.config/salutem/checks'
 
 
 function main
 {
-    touch healthcheck.lock
     check
-    rm healthcheck.lock
 }
 
 function check
