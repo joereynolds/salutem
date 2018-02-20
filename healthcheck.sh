@@ -15,9 +15,9 @@ function check
 
          # Calls the check method from each script
          if [[ "$(check)" -eq 0 ]]; then
-             echo "✔ [$file] "
+             printf "\033[0;32m✔ \033[0m [$file]\n"
          else
-             echo "✖ [$file] "
+             printf "\033[0;31m✖ \033[0m [$file]\n"
          fi
     done
 }
