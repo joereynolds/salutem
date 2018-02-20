@@ -40,3 +40,5 @@ Cool ideas for Salutem:
 ```
 
 Put this on a cron once a day and you now have a nightly report on the health of your server!
+
+![Imgur](https://i.imgur.com/nSkbUNH.png)
