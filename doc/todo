@@ -1,0 +1,5 @@
+TODO
+
+- Configuration constant warning should have %s equivalent in python so 
+  we can pass through the directory name into the warning. 
+  Likewise in a few other places.

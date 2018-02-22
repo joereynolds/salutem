@@ -10,15 +10,15 @@ class Configuration():
         configuration file.
     """
 
-    def __init__(self, check_directory):
-        self.config = check_directory
+    def __init__(self, directory):
+        self.directory = directory
 
     def validate(self):
-        if not self.has_custom_checks(self.config):
-            print(Configuration.NO_CONFIG_FILE_WARNING)
+        if not self.has_custom_checks(self.directory):
+            raise OSError('File ' + self.directory + ' does not exist')
 
-    def has_custom_checks(self, check_directory):
-        return os.path.isdir(check_directory)
+    def has_custom_checks(self, directory):
+        return os.path.isdir(directory)
 
     def get_configuration_directory(self):
-        return self.config
+        return self.directory

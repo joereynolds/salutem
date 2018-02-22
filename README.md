@@ -29,6 +29,13 @@ If the service you want to check isn't supported, simply add it to the `checks/s
 Inside your newly created check file, you'll need a main function called `check()` to tell it what to do, make sure
 to return the correct exit code (0 for success, 1 for failure) so that Salutem knows what to do.
 
+## Contributing
+
+### Running the tests   
+
+```
+python3 -m unittest discover -v
+```
 ## Inspiration
 
 Cool ideas for Salutem:
