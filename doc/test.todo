@@ -1,0 +1,4 @@
+- Test the checker class is instantiable
+- Acceptance test to check our help shows up
+- Test it throws a warning (not exception) if we're missing our custom check class
+- Create a fixtures file, set the check directory to this, and make sure it finds all of our files
