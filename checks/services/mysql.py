@@ -8,5 +8,5 @@ def check():
     )
 
     if result.returncode != 0:
-        raise Exception(result.stdout)
+        raise Exception(result.stdout.decode('utf-8'))
 
