@@ -1,8 +1,11 @@
 import os
 import glob
 import importlib
+import subprocess
+
 
 class Checker():
+
 
     def __init__(self, configuration):
         self.configuration = configuration
@@ -17,30 +20,38 @@ class Checker():
 
     def check(self):
         checks = self.get_checks()
-        # print(checks)
         self.run_checks(checks)
 
     def get_checks(self):
-        check_files = []
-        built_in_checks = glob.glob('./checks/**/*.py', recursive = True)
+        check_files = glob.glob('./checks/**/*', recursive = True)
 
         if self.configuration.has_custom_checks(self.configuration.get_configuration_directory()):
             custom_checks = glob.glob(
-                self.configuration.get_configuration_directory() + '/**/*.py',
+                self.configuration.get_configuration_directory() + '/**/*',
                 recursive = True
             )
 
             check_files += custom_checks
-
-        check_files += built_in_checks
 
         return check_files
 
     def run_checks(self, checks):
         for check in checks:
             formatted_check = self.convert_path_to_import(check)
-            module = importlib.import_module(formatted_check)
-            module.check()
+
+            _, extension = os.path.splitext(check)
+
+            if extension == '.py':
+                module = importlib.import_module(formatted_check)
+                try:
+                    module.check()
+                    print('✔ ' + '[' + check + ']')
+                    continue
+                except Exception as err:
+                    print('✖ ' + '[' + check + ']')
+                    print('Failed with the following reason(s):')
+                    print(err)
+
 
     def convert_path_to_import(self, file_path):
         if file_path.startswith('./'):
@@ -50,6 +61,3 @@ class Checker():
         file_path = file_path.replace('.py', '')
 
         return file_path
-
-
-
