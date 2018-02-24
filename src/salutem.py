@@ -2,12 +2,8 @@ import argparse
 
 class Salutem():
 
-    def __init__(self, checker):
-        self.checker = checker
-
-    def run(self):
+    def __init__(self):
         self.add_help_options()
-        self.checker.run()
 
     def add_help_options(self):
         parser = argparse.ArgumentParser()
@@ -40,4 +36,4 @@ class Salutem():
             help='Show all checks in use'
         )
 
-        args = parser.parse_args()
+        self.args = parser.parse_args()

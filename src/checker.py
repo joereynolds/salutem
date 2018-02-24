@@ -7,8 +7,9 @@ import subprocess
 class Checker():
 
 
-    def __init__(self, configuration):
+    def __init__(self, configuration, printer):
         self.configuration = configuration
+        self.printer = printer
 
     def run(self):
         try:
@@ -45,12 +46,10 @@ class Checker():
                 module = importlib.import_module(formatted_check)
                 try:
                     module.check()
-                    print('✔ ' + '[' + check + ']')
+                    self.printer.print_success(check)
                     continue
                 except Exception as err:
-                    print('✖ ' + '[' + check + ']')
-                    print('Failed with the following reason(s):')
-                    print(err)
+                    self.printer.print_failure(check, err)
 
 
     def convert_path_to_import(self, file_path):
