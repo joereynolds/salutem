@@ -4,14 +4,20 @@ class Configuration():
 
     NO_CONFIG_FILE_WARNING = """
         No custom check directory found.
-        You can create one under the default
+        You can create one under
         ~/.config/salutem/checks
-        or create your own and edit the
-        configuration file.
     """
 
-    def __init__(self, directory):
+    def __init__(
+            self,
+            directory,
+            stop_on_failure = False,
+            only_show_failures = False
+        ):
+
         self.directory = directory
+        self.stop_on_failure = stop_on_failure
+        self.only_show_failures = only_show_failures
 
     def validate(self):
         if not self.has_custom_checks(self.directory):

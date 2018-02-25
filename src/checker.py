@@ -3,6 +3,8 @@ import glob
 import importlib
 import subprocess
 
+from src.check import Check
+
 
 class Checker():
 
@@ -19,10 +21,12 @@ class Checker():
         self.check()
 
     def check(self):
-        checks = self.get_checks()
-        self.run_checks(checks)
+        checks_before_run = self.get_checks()
+        checks_after_run = self.run_checks(checks_before_run)
+        self.print_checks_after_run(checks_after_run)
 
     def get_checks(self):
+        """Returns all of our custom checks to run"""
         check_files = glob.glob('./checks/**/*', recursive = True)
 
         if self.configuration.has_custom_checks(self.configuration.get_configuration_directory()):
@@ -36,25 +40,26 @@ class Checker():
         return check_files
 
     def run_checks(self, checks):
-        for check in checks:
-            formatted_check = self.convert_path_to_import(check)
+        """Returns a list of all checks, including
+        whether they succeeded or failed and if they failed,
+        the error message."""
 
-            _, extension = os.path.splitext(check)
+        check_statuses = []
 
-            if extension == '.py':
-                module = importlib.import_module(formatted_check)
-                try:
-                    module.check()
-                    self.printer.print_success(check)
-                    continue
-                except Exception as err:
-                    self.printer.print_failure(check, err)
+        for check_path in checks:
+            check = Check(check_path)
+            check.run()
+            check_statuses.append(check)
 
-    def convert_path_to_import(self, file_path):
-        if file_path.startswith('./'):
-            file_path = file_path[2:]
+        return check_statuses
 
-        file_path = file_path.replace('/', '.')
-        file_path = file_path.replace('.py', '')
-
-        return file_path
+    def print_checks_after_run(self, checks_after_run):
+        for check in checks_after_run:
+            if check.extension == '.py':
+                if check.status == check.SUCCEEDED:
+                    self.printer.print_success(check.path)
+                if check.status == check.FAILED:
+                    self.printer.print_failure(
+                        check.path,
+                        check.message
+                    )
