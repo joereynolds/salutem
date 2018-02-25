@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from src.checker import Checker
 from src.config import Configuration
 from src.salutem import Salutem

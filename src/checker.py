@@ -6,7 +6,6 @@ import subprocess
 
 class Checker():
 
-
     def __init__(self, configuration, printer):
         self.configuration = configuration
         self.printer = printer
@@ -50,7 +49,6 @@ class Checker():
                     continue
                 except Exception as err:
                     self.printer.print_failure(check, err)
-
 
     def convert_path_to_import(self, file_path):
         if file_path.startswith('./'):
