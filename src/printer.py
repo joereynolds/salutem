@@ -3,9 +3,9 @@ class Printer():
     COLOUR_MESSAGE = '\033[0;33m'
     COLOUR_SUCCESS = '\033[0;32m'
     COLOUR_FAILURE = '\033[0;31m'
-    COLOUR_RESET   = '\033[0m'
+    COLOUR_RESET = '\033[0m'
 
-    def __init__(self, coloured = False):
+    def __init__(self, coloured=False):
         self.coloured = coloured
 
     def print_success(self, message):
@@ -39,3 +39,4 @@ class Printer():
         print(check)
         print(prompt)
         print(error)
+        print(self.COLOUR_RESET)
