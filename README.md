@@ -22,6 +22,9 @@ Custom checks should be stored in `~/.config/salutem/checks` (Though can also be
 Inside your newly created check file, you'll need a main function called `check()` to tell it what to do. Make sure
 to throw an `Exception` for failure so that Salutem knows what to do.
 
+A check can also contain a `name` variable. This is a friendly name for the
+check instead of the default filepath of the check.
+
 There are some examples of custom checks in `checks/custom` to get an idea of what you can do.
 As long as you throw an `Exception` when it fails, it will 'just work'.
 

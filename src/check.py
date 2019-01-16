@@ -6,6 +6,7 @@ class Check():
 
     FAILED = 'failed'
     SUCCEEDED = 'succeeded'
+    EXTENSION = '.py'
 
     def __init__(self, path):
         self.path = path
@@ -13,6 +14,15 @@ class Check():
         self.extension = self.get_extension(self.path)
         self.status = ''
         self.message = ''
+        self.name = self.get_friendly_name()
+
+    def get_friendly_name(self):
+        if self.extension == self.EXTENSION:
+            module = importlib.import_module(self.import_path)
+            try:
+                return module.name
+            except AttributeError:
+                return ''
 
     def get_extension(self, path):
         _, extension = os.path.splitext(path)
@@ -23,12 +33,12 @@ class Check():
             path = path[2:]
 
         path = path.replace('/', '.')
-        path = path.replace('.py', '')
+        path = path.replace(self.EXTENSION, '')
 
         return path
 
     def run(self):
-        if self.extension == '.py':
+        if self.extension == self.EXTENSION:
             module = importlib.import_module(self.import_path)
             try:
                 module.check()

@@ -21,8 +21,7 @@ class Checker():
         self.check()
 
     def check(self):
-        checks_before_run = self.get_checks()
-        checks_after_run = self.run_checks(checks_before_run)
+        checks_after_run = self.run_checks(self.get_checks())
         self.print_checks_after_run(checks_after_run)
 
     def get_checks(self):
@@ -57,9 +56,9 @@ class Checker():
         for check in checks_after_run:
             if check.extension == '.py':
                 if check.status == check.SUCCEEDED:
-                    self.printer.print_success(check.path)
+                    self.printer.print_success(check.name or check.path)
                 if check.status == check.FAILED:
                     self.printer.print_failure(
-                        check.path,
+                        check.name or check.path,
                         check.message
                     )
