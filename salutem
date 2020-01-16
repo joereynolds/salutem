@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+
+from pathlib import Path
+
 from src.checker import Checker
 from src.config import Configuration
 from src.salutem import Salutem
@@ -9,15 +12,13 @@ if __name__ == '__main__':
 
     salutem = Salutem()
 
-    print_with_color = True if salutem.args.colored else False
-    stop_on_failure = True if salutem.args.stop_on_failure else False
-    only_show_failures = True if salutem.args.only_show_failures else False
-
-
+    print_with_color = bool(salutem.args.colored)
+    stop_on_failure = bool(salutem.args.stop_on_failure)
+    only_show_failures = bool(salutem.args.only_show_failures)
 
     checker = Checker(
         Configuration(
-            '/home/joe/.config/salutem/checks',
+            str(Path.home()) + '/.config/salutem/checks',
             stop_on_failure,
             only_show_failures
         ),
